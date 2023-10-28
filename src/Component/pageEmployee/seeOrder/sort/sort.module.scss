@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+
+    select{
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size:1.6rem;
+        border-radius: 7rem;
+    }
+}

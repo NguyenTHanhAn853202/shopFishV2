@@ -1,0 +1,34 @@
+.wrapper{
+    min-height: 200px;
+    padding: 50px;
+    h1{
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .container{
+        width: 90%;
+        margin: auto;
+    }
+    select{
+        border-radius: 7px;
+        padding: 3px 7px;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+    }
+    .contain-select{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .table-item{
+        width: 90%;
+        margin: auto;
+        border-collapse: collapse;
+        
+    }
+    th,td{
+        border-bottom: 1px solid #999;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 3px 0;
+    }
+}

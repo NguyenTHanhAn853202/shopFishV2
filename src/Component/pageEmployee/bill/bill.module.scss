@@ -1,0 +1,83 @@
+.wrapper{
+     display: flex;
+     justify-content: center;
+     padding: 40px 0;
+    .contain{
+        width: 60%;
+    }
+    h1{
+        font-size: 2.4rem;
+        text-align: center;
+        padding: 10px 0;
+    }
+    label{
+        display: block;
+    }
+   
+    .provider{
+        display: flex;
+        gap:20px;
+        align-items: center;
+
+        .clear{
+            font-size: 2.4rem;
+            cursor: pointer;
+        }
+        .contain-ip{
+            // width: 100%;
+            flex: 1;
+        }
+
+        
+        .code, .date{
+            width: 200px;
+            flex: none;
+        }
+       
+    
+    }
+    input{
+        border: 1px solid #999;
+        border-radius: 10px;
+        width: 100%;
+        height: 40px;
+        padding: 3px 10px;
+        font-size: 1.6rem;
+    }
+
+    .item{
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        gap:2%;
+        margin: auto;
+        justify-content: center;
+        .contain-ip{
+            width: 30%;
+            padding: 10px 0;
+        }
+        .code{
+            width: 30%;
+        }
+        .name{
+            width: 68%;
+        }
+        .price{
+            width: 35%;
+            input{
+                width: 80%;
+
+            }
+        }
+        span{
+            width: 20%;
+            padding-left: 5px;
+        }
+    }
+    button{
+        margin: auto;
+        margin-top: 30px;
+    }
+   
+    
+}

@@ -1,0 +1,49 @@
+.wrapper {
+    width: 50%;
+    margin: auto;
+    padding: 50px 0 ;
+    label,input{
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    input{
+        width: 100%;
+        padding: 10px;
+        height: 40px;
+        margin-bottom: 15px;
+        border-radius: 7px;
+        border:1px solid #999;
+        &:focus-within{
+            border-radius:1px solid #777;
+        }
+    }
+    .file-image{
+        background-color: black;
+        width: 120px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        padding: 5px 0;
+    }
+    input[type="file"]{
+        display: none;
+    }
+    textarea{
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        height: 200px;
+        margin-bottom: 10px;
+    }
+    button{
+        margin: auto;
+        margin-top: 30px;
+    }
+    img{
+        width: 100px;
+        object-fit: cover;
+    }
+}

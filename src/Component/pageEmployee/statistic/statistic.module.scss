@@ -1,0 +1,16 @@
+.wrapper{
+    padding: 50px 0;
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+    input{
+        border: 1px solid #999;
+        padding: 3px 7px;
+        width: 120px;
+        text-align: center;
+        border-radius: 15px;
+    }
+    label{
+        padding-right: 5px;
+    }
+}

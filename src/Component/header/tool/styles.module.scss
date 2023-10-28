@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+}
+
+.icon-bag,
+.icon-search {
+    width: 30px;
+    height: 30px;
+    color: var(--primary);
+    background-color: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+.icon-bag {
+    position: relative;
+    margin-right: 25px;
+}
+
+.icon-bag__icon{
+    z-index: 1000000;
+}
+
+.number-of-product{
+    position: absolute;
+    top: -7px;
+    right: -15px;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color:var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+        font-size: 1.1rem;
+        color: var(--background);
+    }
+}
+
+
+// css classNames 

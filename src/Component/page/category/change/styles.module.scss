@@ -1,0 +1,40 @@
+.wrapper{
+   flex: 1;
+    h1{
+        font-weight: 500;
+    }
+    .container{
+        display: flex;
+        justify-content:flex-end;
+    }
+    ul{
+        width: 75%;
+        border: 1px solid #999;
+        padding: 10px;
+        max-height: 70vh;
+        overflow: hidden;
+        overflow-y: scroll;
+        li{
+            text-decoration: none;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            &:nth-child(even) {
+                background-color: #f8f8f8;
+            }
+            padding:5px;
+            margin: 5px;
+            input{
+                flex: 1;
+                background-color: transparent;
+                font-size: 1.6rem;
+            }
+            .btn{
+                margin: auto;
+                margin: 0;
+                width: 70px;
+                margin-left:5px;
+            }
+        }
+    }
+}

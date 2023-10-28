@@ -1,0 +1,24 @@
+.wrapper {
+    width: 50%;
+    h1{
+        font-weight: 500;
+        padding-bottom: 30px;
+    }
+    .container-info {
+        display: flex;
+    }
+    label {
+        font-size: 1.8rem;
+        padding-bottom: 5px;
+    }
+    .btn{
+        margin: 0;
+        margin-left:  20px;
+    }
+    input,.btn{
+        height: 38px;
+    }
+    input{
+        border-radius: 10px;
+    }
+}

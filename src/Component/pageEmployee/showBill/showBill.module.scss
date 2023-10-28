@@ -1,0 +1,38 @@
+.wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 40px 0; 
+    h1{
+        text-align: center;
+        font-size:2.8rem
+    }
+    table{
+        width: 80%;
+        margin: auto;
+
+        td{
+            text-align: center;
+            position: relative;
+            
+            span{
+                padding:3px
+            }
+            .icon{
+                cursor: pointer;
+            }
+        }
+    }
+
+    .line{
+        width: 100%;
+        display: block;
+        border: 1px solid #999;
+        padding: 0;
+        margin: 5px 0;
+    }
+    .more-item{
+        border-top: 1px solid #999;
+    }
+    
+
+}
