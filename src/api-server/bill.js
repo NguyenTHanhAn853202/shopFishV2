@@ -53,3 +53,29 @@ export const showAddProduect = async()=>{
         console.log(error);
     }
 }
+
+export const showExportBill = async()=>{
+    try {
+        const data = await request.get('bill/show-export-bill',{
+            params:{
+                id:localStorage.id
+            }
+        })
+        return data.data
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const showInventory = async()=>{
+    try {
+        const data = await request.get('bill/show-inventory',{
+            params:{
+                id:localStorage.id
+            }
+        })
+        return data.data
+    } catch (error) {
+        console.log(error);
+    }
+}
+

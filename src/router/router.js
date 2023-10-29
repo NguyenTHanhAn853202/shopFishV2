@@ -2,6 +2,8 @@
 import { lazy } from 'react';
 
 
+const Inventory = lazy(()=>import('~/Component/pageEmployee/inventory'))
+const ExportBill = lazy(()=>import('~/Component/pageEmployee/exportBill'))
 const ShowBill = lazy(()=>import('~/Component/pageEmployee/showBill'))
 const Bill = lazy(()=>import('~/Component/pageEmployee/bill'))
 const BoughtAtStore = lazy(() =>import('~/Component/pageEmployee/boughtAtStore'))
@@ -94,6 +96,14 @@ export const layout_employee_manager = [
     {
         element:ShowBill,
         path:'xem-hoa-don'
+    },
+    {
+        element:ExportBill,
+        path:'hoa-don-xuat'
+    },
+    {
+        element:Inventory,
+        path:'hang-ton'
     }
 ];
 

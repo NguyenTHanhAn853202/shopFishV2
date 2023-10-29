@@ -77,6 +77,8 @@ function Begin() {
                                                 <Link to={'/thong-ke'}>Thống kê</Link>
                                                 <Link to={'/cap-nhat-hoa-don'}>Cập nhật hóa đơn</Link>
                                                 <Link to={'/xem-hoa-don'}>Xem hóa đơn</Link>
+                                                <Link to={'/hoa-don-xuat'}>Hóa đơn xuất</Link>
+                                                <Link to={'/hang-ton'}>Hàng tồn kho</Link>
                                             </>
                                         )}
                                         <Link to='/my-order'>Xem đơn hàng</Link>
