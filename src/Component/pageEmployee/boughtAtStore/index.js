@@ -21,8 +21,9 @@ function BoughtAtStore() {
             notify('error','Số lượng vượt quá số lượng hiện có')
             return;
         }
+        
         const data = await boughtAtStore(product._id,product.name,
-            name,phone,address,product.price,number)
+            name,phone,address,product.price,number,product.billId,product.itemId)
         if(data.success){
             setName('')
             setAddress('')
@@ -31,7 +32,7 @@ function BoughtAtStore() {
             notify('success','Mua thành công')
         }
     }
-
+    console.log(product);
     return (<div className={cx('wrapper')}>
         <NotifyContainer />
         <h1>Mua tại cữa hàng</h1>

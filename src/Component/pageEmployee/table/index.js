@@ -20,10 +20,10 @@ function Table({data}) {
                 console.log(item);
                 return  <tr key={index}>
                 <td >{index+1}</td>
-                <td >{item._billId.provider}</td>
-                <td >{item.itemId}</td>
-                <td >{item._itemId.name}</td>
-                <td >{item.number}</td>
+                <td >{item?._billId?.provider}</td>
+                <td >{item?.itemId}</td>
+                <td >{item?._itemId?.name}</td>
+                <td >{item?.number}</td>
             </tr>
            })}
         </tbody>

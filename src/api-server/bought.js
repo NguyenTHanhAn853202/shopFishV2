@@ -52,11 +52,12 @@ export const  statistic = async(year)=>{
     }
 }
 
-export const boughtAtStore = async(idProduct,nameProduct,name,phoneNumber,address,price,number)=>{
+export const boughtAtStore = async(idProduct,nameProduct,name,phoneNumber,address,price,number,billId,itemId,ship=true)=>{
     try {
         const data = await request.post('bought/bought-at-store',{
             idProduct,nameProduct,name,phoneNumber,address,price,number,
-            id:localStorage.id
+            id:localStorage.id,
+            billId,itemId,ship
          })
          return data.data
     } catch (error) {

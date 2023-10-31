@@ -29,7 +29,7 @@ function Card({ user, order, idOrder,item,setRender }) {
                 )
             if(data?.data?.code ===200){
                 const orderCode = data.data.data.order_code
-                const dataConfirm = await confirm(idOrder, itemProduct._id,orderCode,itemProduct.idProduct.billId,itemProduct.idProduct.itemId);
+                const dataConfirm = await confirm(idOrder, itemProduct._id,orderCode,itemProduct.idProduct.billId,itemProduct.idProduct.itemId,true);
                 setRender(props=>(!props))
                 setProducts((props) => {
                     props.splice(i, 1);
@@ -45,7 +45,7 @@ function Card({ user, order, idOrder,item,setRender }) {
     };
     const handleClickShopShip = async(itemProduct, i,item)=>{
         try {
-            const data = await confirm(idOrder,itemProduct._id,null)
+            const data = await confirm(idOrder,itemProduct._id,null,null,null,null)
             setRender(props=>(!props))
                 setProducts((props) => {
                     props.splice(i, 1);
