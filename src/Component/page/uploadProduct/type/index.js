@@ -41,7 +41,7 @@ function Type({ index,success=false ,setSuccess,location}, ref) {
     useImperativeHandle(ref, () => ({
         info() {
             return {
-                // size: sizeRef.current.value.split(' '),
+                size: sizeRef.current.value.split(' '),
                 price: priceRef.current.value * 1,
                 // number: numberRef.current.value * 1,
                 file:file,
@@ -53,6 +53,7 @@ function Type({ index,success=false ,setSuccess,location}, ref) {
     useEffect(()=>{
         if(success){
             priceRef.current.value =''
+            sizeRef.current.value=''
             setInfo({size:'',number:"",price:""})
             setFile([])
             setFileUpdate([])
@@ -63,6 +64,7 @@ function Type({ index,success=false ,setSuccess,location}, ref) {
         <div className={cx('wrapper')}>
             <div className={cx('input')}>
                 <Input onChange={(e)=>setInfo((prop=>({...prop,price:e.target.value*1})))} value={info.price} ref={priceRef} w70 type="number" min={1} className={cx('price')} placeholder="Giá" />
+                <Input onChange={(e)=>setInfo((prop=>({...prop,size:e.target.value})))} value={info.size} ref={sizeRef} w70  className={cx('price')} placeholder="Size" />
             </div>
             <div className={cx('image')}>
                 <div className={cx('contain-image')}>

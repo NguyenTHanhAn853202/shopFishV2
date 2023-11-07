@@ -1,7 +1,7 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
 
-
+const UpdateBill = lazy(()=>import('~/Component/page/updateBill'))
 const Inventory = lazy(()=>import('~/Component/pageEmployee/inventory'))
 const ExportBill = lazy(()=>import('~/Component/pageEmployee/exportBill'))
 const ShowBill = lazy(()=>import('~/Component/pageEmployee/showBill'))
@@ -119,6 +119,11 @@ export const layoutManager = [
     {
         element: Category,
         path:'danh-muc'
+    },
+    {
+        element:UpdateBill,
+        path:'cap-nhat-thong-tin-ql',
+        slug:true
     }
 ];
 

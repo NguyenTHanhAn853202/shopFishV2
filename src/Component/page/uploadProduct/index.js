@@ -35,7 +35,7 @@ function UploadProduct() {
                 try {
                     const info = JSON.parse(overView.name)
                     const formData = new FormData();
-                    const {file:images,fileUpdate,price} = infoProduct
+                    const {file:images,fileUpdate,price,size} = infoProduct
                     images.forEach((image) => {
                         formData.append('image',image)
                     })
@@ -43,8 +43,9 @@ function UploadProduct() {
                     fileUpdate.forEach((image) => {
                         formData.append('fileUpdate',image)
                     })
-                    formData.append('price',info.price)
-                    formData.append('number',info.number)
+                    formData.append('price',price)
+                    formData.append('size',size)
+                    formData.append('number',info.recentNumber)
                     formData.append('billId',info.billId)
                     formData.append('itemId',info.itemId)
                     // formData.append('size',others.size)
@@ -68,7 +69,7 @@ function UploadProduct() {
                                 },
                             });
                     }
-                    console.log(data);
+                    // console.log(data);
                     if(data?.success){
                         notify('success',data.message); 
                         setSuccessO(data.success)

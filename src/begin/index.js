@@ -60,6 +60,8 @@ function Begin() {
                                             <>
                                                 <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
                                                 <Link to={'/quan-ly/danh-muc'}>Chỉnh sữa danh mục</Link>
+                                                <Link to={'/quan-ly/cap-nhat-thong-tin-ql/nha-cung-cap'}>Cập nhật nhà cung cấp</Link>
+                                                <Link to={'/quan-ly/cap-nhat-thong-tin-ql/ten-san-pham'}>Cập nhật tên sản phẩm</Link>
                                                 {/* <Link to={'/see-order'}>Xác nhận đơn hàng</Link>
                                                 <Link to={'/all-bought'}>Cập nhật đơn hàng tự giao</Link>
                                                 <Link to={'/create-post'}>Tạo bài viết</Link>

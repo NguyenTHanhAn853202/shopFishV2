@@ -62,11 +62,14 @@ export const uploadProduct = async (formData, config) => {
     }
 };
 
-export const deleteProduct = async (id) => {
+export const deleteProduct = async (id,number,billId,itemId) => {
     const data = await requests.remove('product/delete', {
         id: localStorage?.id,
         role: localStorage.role,
         idProduct:id,
+        number:number,
+        billId,
+        itemId
     });
     return data.data;
 };

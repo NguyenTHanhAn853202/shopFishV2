@@ -55,8 +55,9 @@ function OverView({ setOverView,success=false,setSuccess,overView }) {
         <div className={cx('wrapper')}>
             <select ref={productRef} className={cx('select-product')}  onChange={handleProduct} >
                 <option value='default'>Chọn sản phẩm</option>
+                {/* {console.log(data[0])} */}
                 {data.map((item,index)=> <option key={index} value={JSON.stringify({...item,index:index})}>
-                    {`${item.billId} - ${item.itemId} - ${item.name} - số lượng: ${item.number} - ${item.price}VND`}
+                    {`${item.billId} - ${item._billId.provider} - ${item.itemId} - ${item.name} - số lượng: ${item.recentNumber} - ${item.price}VND`}
                 </option>)}
             </select>
 

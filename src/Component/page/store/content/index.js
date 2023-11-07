@@ -21,6 +21,8 @@ function Content() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [agree, setAgree] = useState(false);
     const [idDelete, setIdDelete] = useState();
+    const [numnerDelete, setNumnerDelete] = useState(0)
+    const [billItem,setBillItem] = useState({})
     const [isShow, setIsShow] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -37,6 +39,11 @@ function Content() {
     const handleClickRemoveProduct = (item, e) => {
         setIsShow(true);
         setIdDelete(item._id);
+        setNumnerDelete(item.number*1)
+        setBillItem({
+            billId: item.billId,
+            itemId: item.itemId
+        })
     };
 
     const handleClickModifyProduct = (item, e) => {
@@ -65,7 +72,7 @@ function Content() {
             (async () => {
                 try {
                     setLoading(true);
-                    const data = await productServer.deleteProduct(idDelete);
+                    const data = await productServer.deleteProduct(idDelete,numnerDelete,billItem.billId,billItem.itemId);
                     setData((props) => {
                         let newData = [...props];
                         newData = newData.filter((item) => item._id !== data._id);
