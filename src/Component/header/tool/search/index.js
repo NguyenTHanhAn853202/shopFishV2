@@ -66,7 +66,8 @@ function Search() {
                     products.map((product) => (
                         <li key={product._id}>
                             <Link to={`/san-pham/${product.slug}`} className={cx('item-product-link')}>
-                                <img src={product.image} alt={product.name} />
+                                {/* <img src={product.image[0]} alt={product.name[0]} /> */}
+                                {product.image[0]?.includes('.mp4')? <video src={product.image[0]}></video> :<img className={cx('product-img')} src={product.image[0]} />}
                                 <div>
                                     <h4>{product.name}</h4>
                                     <span>{`${product.price} VNĐ`}</span>

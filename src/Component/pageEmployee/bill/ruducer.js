@@ -7,21 +7,40 @@ const NUMBER = 'number'
 const PRICE = 'price'
 const CLEARPROVIDER = 'clearprovider'
 const CLEARITEM = 'clearitem'
+const ADDPRODUCT = 'add'
 
-const states ={
-    codeBill:'',
-    provider:'',
-    date: new Date().toISOString().substr(0, 10),
+const subState = {
     codeItem:'',
     name:'',
     number:'',
     price:''
 }
-export {states, PROVIDER, DATE,CLEARPROVIDER,CLEARITEM, CODEBILL,CODEITEM,NAME,NUMBER, PRICE}
+
+const states ={
+    codeBill:'',
+    provider:'',
+    date: new Date().toISOString().substring(0, 10),
+    subState:[
+        subState
+    ]
+}
+export {states, PROVIDER, DATE,CLEARPROVIDER,CLEARITEM, CODEBILL,CODEITEM,NAME,NUMBER, PRICE,ADDPRODUCT}
 
 const reduce = (state, action) =>{
-    const {key, value} = action
+    const {key, value,index=null} = action
     switch (key) {
+        case ADDPRODUCT:
+            const addState = state.subState
+            addState.push({
+                codeItem:'',
+                name:'',
+                number:'',
+                price:''
+            })
+            return {
+                ...state,
+                subState: addState,
+            }
         case CODEBILL:
             return {
                 ...state,
@@ -30,52 +49,60 @@ const reduce = (state, action) =>{
         case PROVIDER:
             return {
                 ...state,
-                provider:value
+                provider: value
             }
         case DATE:
             return {
                 ...state,
-                date:value
+                date: value
             }
         case CODEITEM:
+            const codeItemState = state.subState
+            codeItemState[index].codeItem = value
             return {
                 ...state,
-                codeItem:value
+                subState:codeItemState
             }
         case NAME:
+            const nameState = state.subState
+            nameState[index].name = value
             return {
                 ...state,
-                name:value
+                subState:nameState
             }
         case NUMBER:
+            const numberState = state.subState
+            numberState[index].number = value
             return {
                 ...state,
-                number:value*1
-            } 
+                subState:numberState
+            }
         case PRICE:
+            const priceState = state.subState
+            priceState[index].price = value
             return {
                 ...state,
-                price:value*1
-            }   
+                subState:priceState
+            }
         case CLEARITEM:
             return {
                 ...state,
-                price:'',
-                number:'',
-                name:'',
-                codeItem:'',
-            }   
+                subState:[subState]
+            }
         case CLEARPROVIDER:
             return {
-                ...state,
                 codeBill:'',
                 provider:'',
-                price:'',
-                number:'',
-                name:'',
-                codeItem:''
-
-            }         
+                date: new Date().toISOString().substring(0, 10),
+                subState:[
+                    {
+                        codeItem:'',
+                        name:'',
+                        number:'',
+                        price:''
+                    }
+                ]
+            }  
         default:
             break;
     }

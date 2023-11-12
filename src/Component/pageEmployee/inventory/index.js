@@ -12,6 +12,7 @@ function Inventory() {
     useEffect(()=>{
         (async()=>{
             const data = await showInventory()
+            console.log(data.data);
             data.success && setData(data.data)
         })()
     },[])

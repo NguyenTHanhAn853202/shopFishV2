@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import styles from './bill.module.scss'
 import Button from "~/button";
-import { useReducer, useRef, useState } from "react";
-import reduce, { CLEARITEM, CLEARPROVIDER, CODEBILL, CODEITEM, DATE, NAME, NUMBER, PRICE, PROVIDER, states } from "./ruducer";
+import { Fragment, useReducer, useRef, useState } from "react";
+import reduce, { ADDPRODUCT, CLEARITEM, CLEARPROVIDER, CODEBILL, CODEITEM, DATE, NAME, NUMBER, PRICE, PROVIDER, states } from "./ruducer";
 import { useEffect } from "react";
 import NotifyContainer, { notify } from "~/utils/notification";
 import { create } from "~/api-server/bill";
@@ -21,8 +21,9 @@ function Bill() {
     const codeBillRef = useRef()
     const [providerAPI,setProviderAPI] = useState([])
     const [productName,setProductName] = useState([])
-    const [visible,setVisible] = useState(false)
+    const [visible,setVisible] = useState([false])
     const [pName,setPName] = useState('')
+    const [typeNumber,setTypeNumber] = useState([1])
     const debounce = useDebounce(pName,500)
     const selectRef = useRef()
     const inputRef = useRef()
@@ -30,23 +31,22 @@ function Bill() {
         codeBill,
         provider, 
         date,
-        codeItem,
-        name,
-        number,
-        price
+        subState
     } = state
     const handleSendRequest = async()=>{
-        if(!codeBill || !codeItem ||!provider || !name || !number || !price){
+        console.log(state);
+        if(!codeBill  ||!provider){
             notify('error','Không đủ thông tin cần thiết')
             return
         }
-        const data = await create(codeBill,provider,date,codeItem,name,number,price)
-        if(data.success){
+        const data = await create(codeBill,provider,date,subState)
+        if(data?.success){
             notify('success','Tạo thành công')
-            dispatch({key:CLEARITEM,value:''})
+            dispatch({key:CLEARPROVIDER,value:''})
             selectRef.current.value='default'
             inputRef.current.value=''
             codeBillRef.current.focus()
+            setTypeNumber([1])
             return
         } 
         if(data?.code === 11000){
@@ -57,6 +57,7 @@ function Bill() {
         notify('error','Không tạo được hóa đơn, xin thử lại')
 
     }
+    
 
     useEffect(()=>{
         (async()=>{
@@ -82,7 +83,11 @@ function Bill() {
 
     useEffect(()=>{
         window.onclick =function(e){
-            if(!e.target.getAttribute('data-hidden')) setVisible(false)
+            if(!e.target.getAttribute('data-hidden')) setVisible(props=>{
+                const newProps = [...props]
+                for(let i=0;i<newProps.length;i++) newProps[i] = false
+                return newProps
+            })
         }
     })
 
@@ -110,50 +115,90 @@ function Bill() {
                </div>
                <span onClick={(e)=>{dispatch({key:CLEARPROVIDER,value:''})}} className={cx('clear')}><FontAwesomeIcon icon={faXmarkCircle} /></span>
             </div>   
-            <h1>Sản phẩm </h1>
-            <div className={cx('item')}>
-                <div className={cx('contain-ip' ,'code')}>
-                    <label>Mã hàng:</label>
-                    <input onChange={(e)=>{dispatch({key:CODEITEM,value:e.target.value})}} value={codeItem} placeholder="Nhập mã hàng" />
-                </div>
-               <div className={cx('contain-ip','name')}>
-                    <label>Tên hàng:</label>
-                    <Tippy
-                        visible={visible}
-                        interactive={true}
-                        offset={[30, 14]}
-                        placement="bottom-start"
-                        interactiveBorder={0}
-                        render={(attrs)=><Render data-hidden={1} classNames={cx('tippy')} attrs={attrs}>
-                            <ul>
-                                {productName.length 
-                                ?productName.map((item,index)=><li 
-                                onClick={()=>{
-                                    dispatch({key:NAME,value:item.name})
-                                    setPName(item.name)
-                                    setVisible(false)
+            {typeNumber.map((item,index) =>(
+                <Fragment key={index}>
+                    <h1>Sản Phẩm {index+1}</h1>
+                    <div className={cx('item')}>
+                        <div className={cx('contain-ip' ,'code')}>
+                            <label>Mã hàng:</label>
+                            <input onChange={(e)=>{dispatch({key:CODEITEM,value:e.target.value,index:index})}} value={subState[index]?.codeItem} placeholder="Nhập mã hàng" />
+                        </div>
+                    <div className={cx('contain-ip','name')}>
+                            <label>Tên hàng:</label>
+                            <Tippy
+                                visible={visible[index]}
+                                interactive={true}
+                                offset={[30, 14]}
+                                placement="bottom-start"
+                                interactiveBorder={0}
+                                render={(attrs)=>{
+                                    return (
+                                        <Render data-hidden={1} classRender={cx('render')} classNames={cx('tippy')} attrs={attrs}>
+                                            <ul>
+                                                {productName.length 
+                                                ?productName.map((item)=><li 
+                                                onClick={()=>{
+                                                    dispatch({key:NAME,value:item.name,index:index})
+                                                    setPName(item.name)
+                                                    setVisible(props=>{
+                                                        const newProps = [...props]
+                                                        newProps[index] = false
+                                                        return newProps
+                                                    })
+                                                }} 
+                                                key={item._id}>{item.name}</li>)
+                                                :<li className={cx('no-see')}>Không tìm thấy</li>}
+                                            </ul>
+                                        </Render>
+                                    )
+                                }}
+                            >
+                                <input ref={inputRef} 
+                                onChange={(e)=>{
+                                    dispatch({key:NAME, value:e.target.value,index})
+                                    setPName(e.target.value)
                                 }} 
-                                key={item._id}>{item.name}</li>)
-                                :<li className={cx('no-see')}>Không tìm thấy</li>}
-                            </ul>
-                        </Render>}
-                    >
-                        <input ref={inputRef} data-hidden={1} value={pName} onChange={(e)=>setPName(e.target.value)}
-                         onFocus={()=>{setVisible(true)}}  
-                        placeholder="Nhập mã hàng" />
-                    </Tippy>
-               </div>
-               <div className={cx('contain-ip')}>
-                    <label>Số lượng:</label>
-                    <input type="number" onChange={(e)=>{dispatch({key:NUMBER,value:e.target.value})}} value={number} placeholder="Nhập số lượng" />
-               </div>
-                <div className={cx('contain-ip','price')}>
-                    <label>Đơn giá:</label>
-                    <input type="number" onChange={(e)=>{dispatch({key:PRICE,value:e.target.value})}} value={price}  placeholder="Nhập đơn giá" />
-                    <span>VND</span>
-                </div>
+                                data-hidden={1} value={subState[index].name} 
+                                onFocus={(e)=>{
+                                    setVisible(props=>{
+                                        const newProps = [...props]
+                                        newProps[index] = true
+                                        return newProps
+                                    })
+                                    setPName(subState[index].name)
+                                }}  
+                                onBlur={()=>setPName('')}
+                                placeholder="Nhập mã hàng" />
+                            </Tippy>
+                    </div>
+                    <div className={cx('contain-ip')}>
+                            <label>Số lượng:</label>
+                            <input type="number" onChange={(e)=>{dispatch({key:NUMBER,value:e.target.value,index:index})}} value={subState[index]?.number} placeholder="Nhập số lượng" />
+                    </div>
+                        <div className={cx('contain-ip','price')}>
+                            <label>Đơn giá:</label>
+                            <input type="number" onChange={(e)=>{dispatch({key:PRICE,value:e.target.value,index:index})}} value={subState[index]?.price}  placeholder="Nhập đơn giá" />
+                            <span>VND</span>
+                        </div>
+                    </div>
+                </Fragment>
+            ))}
+            <div className={cx('contain-btn')}>
+                <Button onClick={()=>{
+                    setTypeNumber((props)=>{
+                        const newProps = [...props]
+                        newProps.push(Math.random())
+                        return newProps
+                    })
+                    dispatch({key:ADDPRODUCT,value:'',index:0})
+                    setVisible(props=>{
+                        const newProps = [...props]
+                        newProps.push(false)
+                        return newProps
+                    })
+                }}>Thêm</Button>
+                <Button onClick={handleSendRequest}>Xác nhận</Button>
             </div>
-            <Button onClick={handleSendRequest}>Xác nhận</Button>
         </div>
     </div>
     );

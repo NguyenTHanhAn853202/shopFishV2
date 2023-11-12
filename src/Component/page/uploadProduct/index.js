@@ -14,9 +14,11 @@ const cx = classNames.bind(styles);
 
 function UploadProduct() {
     const location = useLocation()
-
+    
     const product = location.state?.product
     const modify = location?.state?.modify
+    const disable = modify?true:false
+    const name  = modify?`${location.state.product.billId} - ${location.state.product.itemId} - ${location.state.product.name}`:''
     const [isShow, setIsShow] = useState(false);
     const [agree, setAgree] = useState(false);
     const [infoProduct, setInfoProduct] = useState([]);
@@ -33,26 +35,30 @@ function UploadProduct() {
         if (agree) {
             (async () => {
                 try {
-                    const info = JSON.parse(overView.name)
                     const formData = new FormData();
                     const {file:images,fileUpdate,price,size} = infoProduct
+                    formData.append('price',price)
+                    formData.append('size',size)
                     images.forEach((image) => {
                         formData.append('image',image)
                     })
-                    // console.log(fileUpdate);
                     fileUpdate.forEach((image) => {
                         formData.append('fileUpdate',image)
                     })
-                    formData.append('price',price)
-                    formData.append('size',size)
-                    formData.append('number',info.recentNumber)
-                    formData.append('billId',info.billId)
-                    formData.append('itemId',info.itemId)
-                    // formData.append('size',others.size)
-                    formData.append('name',info.name)
                     formData.append('type',overView.type)
                     formData.append('description',overView.description)
                     formData.append('id',localStorage?.id || null)
+                    if(modify){
+
+                    }
+                    else{
+                        const info = JSON.parse(overView.name)
+                        formData.append('number',info.recentNumber)
+                        formData.append('billId',info.billId)
+                        formData.append('itemId',info.itemId)
+                        formData.append('name',modify?'':info.name)
+                    }
+
                     if(product?._id )formData.append('idProduct',product._id)
                     let data
 
@@ -85,6 +91,7 @@ function UploadProduct() {
                         navigate('/cua-hang')
                     }
                 } catch (error) {
+                    console.log(error.message);
                     notify('error','Cập nhật thất bại, hãy thử kiểm tra lại kích thước file')
                     // console.log(error);
                 }
@@ -111,7 +118,7 @@ function UploadProduct() {
             )}
             <div className={cx('contain', { grid: true })}>
                 <div className={cx('overview')}>
-                    <OverView location={location} success={successO} setSuccess={setSuccessO} overView={overView} setOverView={setOverView} />
+                    <OverView name={name} disable={disable} location={location} success={successO} setSuccess={setSuccessO} overView={overView} setOverView={setOverView} />
                 </div>
                 
                     <div className={cx('info')}>

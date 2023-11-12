@@ -53,9 +53,9 @@ function AllBought() {
                  return <li key={item._id}>
                  <h2 className={cx('name')}>{item.userID.name + " - " + item.userID._id}</h2>
                  <div className={cx('product')}>
-                     <img src={item.idProduct.image[0]} />
+                     <img src={item.idProduct?.image[0]} />
                      <div className={cx('info-product')}>
-                         <h3>{item.idProduct.name}</h3>
+                         <h3>{item.idProduct?.name}</h3>
                          <h4>{'Size: '  + item.size}</h4>
                          <span>{item.price + ' x ' + item.number +' = ' + item.price*item.number+'VNĐ'}</span>
                      </div>

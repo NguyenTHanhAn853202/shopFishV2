@@ -26,13 +26,13 @@ export const allBought = async()=>{
     }
 }
 
-export const updateStatus = async(idBought,status,billId='',itemId='',number=0,price=0) => {
+export const updateStatus = async(idBought,status,billId='',itemId='',number=0,price=0,name) => {
     try {
         const data = await request.post('/bought/update-status',{
             id:localStorage.id,
             idBought,
             status:status,
-            billId,itemId,number,price
+            billId,itemId,number,price,name
         })
         return data.data
     } catch (error) {

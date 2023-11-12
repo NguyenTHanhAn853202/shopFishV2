@@ -58,14 +58,23 @@ function Begin() {
                                         <Link to={'/cap-nhat-thong-tin'}>Thông tin</Link>
                                         {(localStorage.role === 'manager' ) && (
                                             <>
-                                                <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
-                                                <Link to={'/quan-ly/danh-muc'}>Chỉnh sữa danh mục</Link>
-                                                <Link to={'/quan-ly/cap-nhat-thong-tin-ql/nha-cung-cap'}>Cập nhật nhà cung cấp</Link>
-                                                <Link to={'/quan-ly/cap-nhat-thong-tin-ql/ten-san-pham'}>Cập nhật tên sản phẩm</Link>
-                                                {/* <Link to={'/see-order'}>Xác nhận đơn hàng</Link>
-                                                <Link to={'/all-bought'}>Cập nhật đơn hàng tự giao</Link>
-                                                <Link to={'/create-post'}>Tạo bài viết</Link>
-                                                <Link to={'/thong-ke'}>Thống kê</Link> */}
+                                                <Tippy
+                                                    hideOnClick={false}
+                                                    offset={[30, 14]}
+                                                     placement="left"
+                                                     interactiveBorder={0}
+                                                     interactive
+                                                    render={(attrsss)=>(
+                                                        <Render attrs={attrsss}>
+                                                            <Link to={'/quan-ly/danh-muc'}>Cập nhật danh mục</Link>
+                                                            <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
+                                                            <Link to={'/quan-ly/cap-nhat-thong-tin-ql/nha-cung-cap'}>Cập nhật nhà cung cấp</Link>
+                                                            <Link to={'/quan-ly/cap-nhat-thong-tin-ql/ten-san-pham'}>Cập nhật tên sản phẩm</Link>
+                                                        </Render>
+                                                    )}
+                                                >
+                                                    <Link>Cập nhật quản lý</Link>
+                                                </Tippy>
                                                 <Link to={'/quan-ly/tao-tai-khoan'}>Tạo tài khoản cho nhân viên</Link>
                                                 <Link to={'/quan-ly/vo-hieu-hoa-tai-khoan'}>Vô hiệu hóa tài khoản</Link>
                                             </>
@@ -76,11 +85,27 @@ function Begin() {
                                                 <Link to={'/see-order'}>Xác nhận đơn hàng</Link>
                                                 <Link to={'/all-bought'}>Cập nhật đơn hàng tự giao</Link>
                                                 <Link to={'/create-post'}>Tạo bài viết</Link>
-                                                <Link to={'/thong-ke'}>Thống kê</Link>
-                                                <Link to={'/cap-nhat-hoa-don'}>Cập nhật hóa đơn</Link>
+                                                <Tippy
+                                                     hideOnClick={false}
+                                                     interactive
+                                                    //  visible={true}
+                                                     offset={[30, 14]}
+                                                     placement="left-end"
+                                                     interactiveBorder={0}
+                                                     render={(attrss)=>(
+                                                        <Render attrs={attrss}>
+                                                            <div>
+                                                                <Link to={'/thong-ke'}>Thống kê</Link>
+                                                                <Link to={'/cap-nhat-hoa-don'}>Cập nhật hóa đơn</Link>
+                                                                <Link to={'/hoa-don-xuat'}>Hóa đơn xuất</Link>
+                                                                <Link to={'/hang-ton'}>Hàng tồn kho</Link>
+                                                            </div>
+                                                        </Render>
+                                                     )}
+                                                >
+                                                   <Link> Tính năng quản lý</Link>
+                                                </Tippy>
                                                 <Link to={'/xem-hoa-don'}>Xem hóa đơn</Link>
-                                                <Link to={'/hoa-don-xuat'}>Hóa đơn xuất</Link>
-                                                <Link to={'/hang-ton'}>Hàng tồn kho</Link>
                                             </>
                                         )}
                                         <Link to='/my-order'>Xem đơn hàng</Link>

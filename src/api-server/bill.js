@@ -1,15 +1,12 @@
 import request from "~/utils/Api/request";
 
-export const create = async(codeBill,provider,date,codeItem,name,number,price)=>{
+export const create = async(codeBill,provider,date,subState)=>{
     try {
         const data = await request.post('bill/create',{
             billId: codeBill,
             provider: provider,
             date: date,
-            itemId:codeItem,
-            name:name,
-            number,
-            price,
+            listProduct:subState,
             id:localStorage.id
         })
         return data.data
