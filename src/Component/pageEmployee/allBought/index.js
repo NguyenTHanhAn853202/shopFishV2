@@ -20,7 +20,7 @@ function AllBought() {
     },[JSON.stringify(data)])
     const handleSuccess = async(item,id,i)=>{
         try {
-            const data = await updateStatus(id,'success',item.idProduct.billId,item.idProduct.itemId,item.number,item.idProduct.price)
+            const data = await updateStatus(id,'success',item.idProduct.billId,item.idProduct.itemId,item.number,item.idProduct.price,item.idProduct?.name)
             if(data.success){
                 setData(props=>{
                     const newData = [...props]

@@ -11,13 +11,13 @@ export const showOrder = async (type) => {
     return data.data;
 };
 
-export const confirm = async (idOrder, idInfoOrder,orderCode,billId,itemId,ship) => {
+export const confirm = async (idOrder, idInfoOrder,orderCode,billId,itemId,ship,name='') => {
     const data = await request.post('order/confirm', {
         id: localStorage.id,
         idOrder: idOrder, 
         idInfoOrder,
         orderCode: orderCode,
-        billId,itemId,ship
+        billId,itemId,ship,name
     });
     return data;
 };

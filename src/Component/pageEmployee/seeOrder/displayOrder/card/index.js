@@ -29,7 +29,7 @@ function Card({ user, order, idOrder,item,setRender }) {
                 )
             if(data?.data?.code ===200){
                 const orderCode = data.data.data.order_code
-                const dataConfirm = await confirm(idOrder, itemProduct._id,orderCode,itemProduct.idProduct.billId,itemProduct.idProduct.itemId,true);
+                const dataConfirm = await confirm(idOrder, itemProduct._id,orderCode,itemProduct.idProduct.billId,itemProduct.idProduct.itemId,true,itemProduct.idProduct.name);
                 setRender(props=>(!props))
                 setProducts((props) => {
                     props.splice(i, 1);

@@ -40,7 +40,7 @@ export const updateStatus = async(idBought,status,billId='',itemId='',number=0,p
     }
 }
 
-export const  statistic = async(year)=>{
+export const statistic = async(year)=>{
     try {
         const data = await request.post('bought/list-bought',{
            year:year,

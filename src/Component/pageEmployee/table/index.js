@@ -22,7 +22,7 @@ function Table({data}) {
                 <td >{index+1}</td>
                 <td >{item?._billId?.provider}</td>
                 <td >{item?.itemId}</td>
-                <td >{item?._itemId?.name}</td>
+                <td >{item.name}</td>
                 <td >{item?.number}</td>
             </tr>
            })}

@@ -14,6 +14,8 @@ import {
   import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from "react";
 import { statistic } from "~/api-server/bought";
+import OverViewStatistics from "../overViewStatistic";
+import { saleInYear } from "~/api-server/statistics";
 
   ChartJS.register(
     CategoryScale,
@@ -35,6 +37,18 @@ import { statistic } from "~/api-server/bought";
       },
     },
   };
+  const optionYears = {
+    esponsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Thống kê theo năm',
+      },
+    },
+  }
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September', 'October', 'November', 'December'];
 
@@ -46,6 +60,7 @@ function Statistic() {
   const [data,setData] = useState([0,0,0,0,0,0,0,0,0,0,0,0])
   const [storeData,setStoreData] = useState([0,0,0,0,0,0,0,0,0,0,0,0])
   const [total,setTotal] = useState([0,0,0,0,0,0,0,0,0,0,0,0])
+  const [years,setYears] = useState([0,0,0,0,0])
   const [year,setYear] = useState(new Date())
   const dataChart = {
     labels,
@@ -71,6 +86,33 @@ function Statistic() {
       }
     ],
   };
+  const nowDate = new Date().getFullYear();
+  console.log(`${nowDate-4}`);
+  const dataChartYears = {
+    labels:[`${nowDate-4}`,`${nowDate-3}`,`${nowDate-2}`,`${nowDate-1}`,`${nowDate}`],
+    datasets: [
+      {
+        label: 'Tổng',
+        data: years,
+        backgroundColor: ['rgba(255, 99, 132, 0.8)']
+      }
+    ],
+  }
+
+  useEffect(()=>{
+    (async()=>{
+      const data = await saleInYear()
+      if(data.success){
+          const arr = []
+          for(let key in data.data){
+            arr.push(data.data[key])
+          }
+          setYears([...arr])
+      }
+    })()
+  },[])
+
+
   useEffect(()=>{
     (async()=>{
       const data = await statistic(new Date(year).getFullYear())
@@ -98,7 +140,8 @@ function Statistic() {
     const tooltipText = `Tooltip for year: ${year}`;
     return <span title={tooltipText}>{year}</span>;
   };
-    return <div className={cx('wrapper')}>
+    return <OverViewStatistics>
+      <div className={cx('wrapper')}>
         <div className={cx('date-picker')}>
             <label>Chọn năm: </label>
             <DatePicker 
@@ -110,7 +153,11 @@ function Statistic() {
             />
         </div>
          <Bar options={options} data={dataChart} />
-    </div>;
+         
+         <div className={cx('chart-year')}><Bar options={optionYears} data={dataChartYears} /></div>
+
+      </div>
+    </OverViewStatistics>
 }
 
 export default Statistic;

@@ -1,0 +1,30 @@
+h1{
+    text-align: center;
+    font-weight: 500;
+    font-size: 2.8rem;
+    padding:20px
+}
+.table-cotain{
+    width: 90%;
+    margin: auto;
+    // margin-top: 30px;
+    padding: 0 10px;
+   
+    thead{
+        background-color:rgb(155 212 233);
+    }
+    th,td{
+        text-align: center;
+    }
+    tr{
+        border-bottom:1px solid #999;
+        height: 50px;
+    
+        &:nth-child(n+2){
+            background-color:#f1e8df;
+        }
+    }
+    table{
+        border-collapse: collapse;
+    }
+}
