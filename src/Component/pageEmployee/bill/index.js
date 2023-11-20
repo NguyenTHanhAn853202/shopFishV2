@@ -114,75 +114,78 @@ function Bill() {
                     <input onChange={(e)=>{dispatch({key:DATE,value:e.target.value})}} value={date} type="date"  placeholder="Nhập ngày nhập" />
                </div>
                <span onClick={(e)=>{dispatch({key:CLEARPROVIDER,value:''})}} className={cx('clear')}><FontAwesomeIcon icon={faXmarkCircle} /></span>
-            </div>   
-            {typeNumber.map((item,index) =>(
-                <Fragment key={index}>
-                    <h1>Sản Phẩm {index+1}</h1>
-                    <div className={cx('item')}>
-                        <div className={cx('contain-ip' ,'code')}>
-                            <label>Mã hàng:</label>
-                            <input onChange={(e)=>{dispatch({key:CODEITEM,value:e.target.value,index:index})}} value={subState[index]?.codeItem} placeholder="Nhập mã hàng" />
-                        </div>
-                    <div className={cx('contain-ip','name')}>
-                            <label>Tên hàng:</label>
-                            <Tippy
-                                visible={visible[index]}
-                                interactive={true}
-                                offset={[30, 14]}
-                                placement="bottom-start"
-                                interactiveBorder={0}
-                                render={(attrs)=>{
-                                    return (
-                                        <Render data-hidden={1} classRender={cx('render')} classNames={cx('tippy')} attrs={attrs}>
-                                            <ul>
-                                                {productName.length 
-                                                ?productName.map((item)=><li 
-                                                onClick={()=>{
-                                                    dispatch({key:NAME,value:item.name,index:index})
-                                                    setPName(item.name)
-                                                    setVisible(props=>{
-                                                        const newProps = [...props]
-                                                        newProps[index] = false
-                                                        return newProps
-                                                    })
-                                                }} 
-                                                key={item._id}>{item.name}</li>)
-                                                :<li className={cx('no-see')}>Không tìm thấy</li>}
-                                            </ul>
-                                        </Render>
-                                    )
-                                }}
-                            >
-                                <input ref={inputRef} 
-                                onChange={(e)=>{
-                                    dispatch({key:NAME, value:e.target.value,index})
-                                    setPName(e.target.value)
-                                }} 
-                                data-hidden={1} value={subState[index].name} 
-                                onFocus={(e)=>{
-                                    setVisible(props=>{
-                                        const newProps = [...props]
-                                        newProps[index] = true
-                                        return newProps
-                                    })
-                                    setPName(subState[index].name)
-                                }}  
-                                onBlur={()=>setPName('')}
-                                placeholder="Nhập mã hàng" />
-                            </Tippy>
-                    </div>
-                    <div className={cx('contain-ip')}>
-                            <label>Số lượng:</label>
-                            <input type="number" onChange={(e)=>{dispatch({key:NUMBER,value:e.target.value,index:index})}} value={subState[index]?.number} placeholder="Nhập số lượng" />
-                    </div>
-                        <div className={cx('contain-ip','price')}>
-                            <label>Đơn giá:</label>
-                            <input type="number" onChange={(e)=>{dispatch({key:PRICE,value:e.target.value,index:index})}} value={subState[index]?.price}  placeholder="Nhập đơn giá" />
-                            <span>VND</span>
-                        </div>
-                    </div>
-                </Fragment>
-            ))}
+            </div>  
+            <h1 className={cx('title-sp')}>Sản phẩm</h1> 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã hàng</th>
+                        <th style={{width:'40%'}}>Tên hàng</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {typeNumber.map((item,index) =>(
+                        <tr>
+                            <td><input onChange={(e)=>{dispatch({key:CODEITEM,value:e.target.value,index:index})}} value={subState[index]?.codeItem} placeholder="Nhập mã hàng" /></td>
+                            <td style={{width:'40%'}}>
+                                <Tippy
+                                    visible={visible[index]}
+                                    interactive={true}
+                                    offset={[30, 14]}
+                                    placement="bottom-start"
+                                    interactiveBorder={0}
+                                    render={(attrs)=>{
+                                        return (
+                                            <Render data-hidden={1} classRender={cx('render')} classNames={cx('tippy')} attrs={attrs}>
+                                                <ul>
+                                                    {productName.length 
+                                                    ?productName.map((item)=><li 
+                                                    onClick={()=>{
+                                                        dispatch({key:NAME,value:item.name,index:index})
+                                                        setPName(item.name)
+                                                        setVisible(props=>{
+                                                            const newProps = [...props]
+                                                            newProps[index] = false
+                                                            return newProps
+                                                        })
+                                                    }} 
+                                                    key={item._id}>{item.name}</li>)
+                                                    :<li className={cx('no-see')}>Không tìm thấy</li>}
+                                                </ul>
+                                            </Render>
+                                        )
+                                    }}
+                                >
+                                    <input ref={inputRef} 
+                                    onChange={(e)=>{
+                                        dispatch({key:NAME, value:e.target.value,index})
+                                        setPName(e.target.value)
+                                    }} 
+                                    data-hidden={1} value={subState[index].name} 
+                                    onFocus={(e)=>{
+                                        setVisible(props=>{
+                                            const newProps = [...props]
+                                            newProps[index] = true
+                                            return newProps
+                                        })
+                                        setPName(subState[index].name)
+                                    }}  
+                                    onBlur={()=>setPName('')}
+                                    placeholder="Nhập mã hàng" />
+                                </Tippy>
+                            </td>
+                            <td>
+                                <input type="number" onChange={(e)=>{dispatch({key:NUMBER,value:e.target.value,index:index})}} value={subState[index]?.number} placeholder="Nhập số lượng" />
+                            </td>
+                            <td>
+                             <input type="number" onChange={(e)=>{dispatch({key:PRICE,value:e.target.value,index:index})}} value={subState[index]?.price}  placeholder="Nhập đơn giá" />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             <div className={cx('contain-btn')}>
                 <Button onClick={()=>{
                     setTypeNumber((props)=>{

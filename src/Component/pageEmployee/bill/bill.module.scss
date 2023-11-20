@@ -36,6 +36,50 @@
        
     
     }
+    table{
+        width: 95%;
+        margin: auto;
+    }
+    table,th,td{
+        border-collapse: collapse;
+        border: 1px solid #999;
+
+        input{
+            border: none;
+        }
+        ul{
+            li{
+                text-align: center;
+                cursor: pointer;
+                padding: 10px 0;
+                border-bottom: 1px solid #999;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        .no-see{
+            cursor: default;
+            color: red;
+        }
+        .tippy{
+            width: 100%;
+            margin-right: 10px;
+            position: relative;
+            left: -10px;
+            overflow: auto;
+            max-height: 250px;
+            box-shadow:  1px 1px 10px #999, 1px 1px 10px #999, 1px 1px 10px #999, 1px 1px 10px #999;;
+        }
+    }
+    th{
+        padding: 3px 0;
+    }
+    .title-sp{
+        align-items: center;
+        padding:20px;
+    }
     input,select{
         border: 1px solid #999;
         border-radius: 10px;
@@ -57,36 +101,13 @@
             width: 30%;
             padding: 10px 0;
 
-            .tippy{
-                width: 100%;
-                margin-right: 10px;
-                position: relative;
-                left: -10px;
-                overflow: auto;
-                max-height: 250px;
-                box-shadow:  1px 1px 10px #999, 1px 1px 10px #999, 1px 1px 10px #999, 1px 1px 10px #999;;
-            }
+            
 
             .render{
                 
             }
 
-            ul{
-                li{
-                    text-align: center;
-                    cursor: pointer;
-                    padding: 10px 0;
-                    border-bottom: 1px solid #999;
-                    &:hover{
-                        opacity: 0.7;
-                    }
-                }
-            }
-
-            .no-see{
-                cursor: default;
-                color: red;
-            }
+           
             
         }
         .code{

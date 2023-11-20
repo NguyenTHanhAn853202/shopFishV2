@@ -38,6 +38,7 @@ export const updateCart = async (cartUpdate) => {
     try {
         const datas = await requests.post('cart/update-product', {
             cartUpdate,
+            id:localStorage.id
         });
         return datas.data;
     } catch (error) {

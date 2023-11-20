@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from './overviewDetail.module.scss'
-
+import * as XLSX from 'xlsx'
 import OverViewStatistics from "../overViewStatistic";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +16,21 @@ function OverviewDetail({options=[],option,setOption,
     }) {
     
     const selectRef  = useRef()
+
+    const handleExportXlsx = e => {
+        const newData = [[...tableHeads],...data]
+        const ws = XLSX.utils.aoa_to_sheet(newData)
+        const wb = XLSX.utils.book_new()
+        let sheet = 'all'
+        if(option){
+            options.forEach(item=>{
+                if(item.value == option) sheet = item.title
+            })
+        }
+        XLSX.utils.book_append_sheet(wb,ws,sheet)
+        const nameFile = title+'.xlsx'
+        XLSX.writeFile(wb,nameFile)
+    }
 
     useEffect(()=>{
         if(option*1===0) selectRef.current.value = option
@@ -56,6 +71,7 @@ function OverviewDetail({options=[],option,setOption,
                 </ul>
             </div>
             <h1>{title}</h1>
+            <button onClick={handleExportXlsx} className={cx('export-xlsx')}>Excel</button>
             <table className={cx('table-cotain',{table:true, "table-striped":true})}>
                 <thead className="table-primary">
                     <tr>
