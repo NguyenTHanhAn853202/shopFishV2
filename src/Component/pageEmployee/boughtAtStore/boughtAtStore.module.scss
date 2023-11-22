@@ -9,14 +9,102 @@
         padding: 10px 0;
     }
 
+    .add-product{
+        label{
+            display: block;
+        }
+        input{
+            border: 1px solid #999;
+            height: 35px;
+            width: 350px;
+            font-size: 1.6rem;
+            padding: 3px 7px;
+        }
+        .render-tippy{
+            width: 350px;
+            position: relative;
+            left: -8%;
+        }
+        h1{
+            font-size: 2rem;
+            font-weight:500 ;
+            text-align: center;
+        }
+        h2{
+            
+            color: red;
+        }
+        h3,h2{
+            font-size: 1.6rem;
+            text-align: center;
+            font-weight:500;
+        }
+
+        .list-product{
+            li{
+                display: flex;
+                overflow: hidden;
+                // justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                padding: 5px 0;
+                &:hover{
+                    opacity: 0.7;
+                }
+                img{
+                    display: inline-block;
+                    width: 30%;
+                    object-fit: cover;
+                }
+                .info-product{
+                    
+                    padding-left: 10px;
+                   
+                }
+                
+            }
+        }
+    }
+
     .product{
+        table{
+            border-collapse: collapse;
+            width: 100%;
+            td,th,tr{
+                text-align: center;
+                padding:5px 0;
+                h4{
+                    font-weight: 500;
+                }
+                input{
+                    border: 1px solid #999;
+                    height: 30px;
+                    width: 150px;
+                    font-size: 1.6rem;
+                    padding: 3px 7px;
+                }
+            }
+            tr{
+                border-bottom: 1px solid #999;
+                padding:5px 0;
+            }
+            button{
+                font-size: 2.4rem;
+                padding: 5px 7px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
         padding: 30px 0;
         border-bottom: 1px solid #999;
         display: flex;
         img{
-            width: 30%;
+            // width: 30%;
+            width: 150px;
             object-fit: cover;
             padding-right: 20px;
+            margin: auto;
         }
         span{
             display: block;
