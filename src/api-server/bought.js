@@ -64,3 +64,30 @@ export const boughtAtStore = async(customerName,phoneNumber,address,billId,produ
         
     }
 }
+
+export const getBillAtStore = async()=>{
+    try {
+        const data = await request.get('bought/get-bill-at-store',{
+            params: {
+                id:localStorage.id
+            }
+        })
+        return data.data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getDetailBill = async(billId)=>{
+    try {
+        const data = await request.get('bought/get-detail-bill',{
+            params: {
+                id:localStorage.id,
+                billId:billId
+            }
+        })
+        return data.data
+    } catch (error) {
+        console.log(error);
+    }
+}

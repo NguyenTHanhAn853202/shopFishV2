@@ -1,6 +1,9 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
 
+
+const DetailAtStore = lazy(()=>import('~/Component/pageEmployee/detailAtStore'))
+const BillAtStore = lazy(()=>import('~/Component/pageEmployee/billAtStore'))
 const Provider = lazy(()=>import('~/Component/pageEmployee/provider'))
 const Order = lazy(()=>import('~/Component/pageEmployee/order'))
 const Item = lazy(()=>import('~/Component/pageEmployee/item'))
@@ -125,6 +128,15 @@ export const layout_employee_manager = [
     {
         element:Provider,
         path:'thong-ke-nha-cung-cap'
+    },
+    {
+        element:BillAtStore,
+        path:'hoa-don-tai-cua-hang'
+    },
+    {
+        element:DetailAtStore,
+        path:'chi-tiet-hd-tai-ch',
+        slug:true
     }
 ];
 

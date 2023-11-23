@@ -99,6 +99,7 @@ function Begin() {
                                                                 <Link to={'/cap-nhat-hoa-don'}>Cập nhật hóa đơn</Link>
                                                                 <Link to={'/hoa-don-xuat'}>Hóa đơn xuất</Link>
                                                                 <Link to={'/hang-ton'}>Hàng tồn kho</Link>
+                                                                <Link to={'/hoa-don-tai-cua-hang'}>Hóa đơn mua tại của hàng</Link>
                                                             </div>
                                                         </Render>
                                                      )}
