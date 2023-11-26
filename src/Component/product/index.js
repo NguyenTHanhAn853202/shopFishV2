@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { newProduct } from '~/api-server/suggestProduct';
 import { Link } from 'react-router-dom';
 import { Context } from '~/GlobalContext';
+import { dotMoney } from '~/utils/dotMoney';
 
 
 const cx = classNames.bind(styles);
@@ -33,7 +34,7 @@ function Product({ ...props }) {
                     {image?.includes('.mp4')? <video className={cx('product-img')}><source src={image} type="video/mp4"/></video> :<img className={cx('product-img')} src={image} />}
                     <div className={cx('title-price')}>
                         <h4 className={cx('name-product')}>{item.name}</h4>
-                        <h4 className={cx('price')}>{`${item.price} VNĐ`}</h4>
+                        <h4 className={cx('price')}>{`${dotMoney(item.price)} VNĐ`}</h4>
                     </div>
                 </div>
             </Link>

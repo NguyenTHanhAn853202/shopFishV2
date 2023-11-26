@@ -4,6 +4,7 @@ import { Context } from '~/GlobalContext';
 import { useContext, useState, forwardRef, useEffect } from 'react';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -65,7 +66,7 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
                                     <img src={item?.image} />
                                     <div className={cx('info-of-product')}>
                                         <h4>{product?.name}</h4>
-                                        <h5>{`Size: ${item.size} - ${item?.price} VNĐ × ${item.number} `}</h5>
+                                        <h5>{`Size: ${item.size} - ${dotMoney(item?.price)} VNĐ × ${item.number} `}</h5>
                                         <h5>{``}</h5>
                                     </div>
                                 </Link>
@@ -90,7 +91,7 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
                 <tbody>
                     <tr>
                         <td colSpan={3}>Tổng chi phí: </td>
-                        <td className={cx('t-r')}>{cost} VNĐ</td>
+                        <td className={cx('t-r')}>{dotMoney(cost)} VNĐ</td>
                     </tr>
                     <tr>
                         <td colSpan={3}>Giảm: </td>
@@ -98,7 +99,7 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
                     </tr>
                     <tr>
                         <td colSpan={3}>Tiền phải trả: </td>
-                        <td className={cx('t-r')}>{cost - discount} VNĐ</td>
+                        <td className={cx('t-r')}>{dotMoney(cost - discount)} VNĐ</td>
                     </tr>
                     <tr>
                         <td colSpan={3}>phương thức thanh toán: </td>

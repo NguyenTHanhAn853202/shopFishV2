@@ -3,6 +3,7 @@ import styles from './user.module.scss'
 import OverviewDetail from "../overviewDetail";
 import { useEffect, useMemo, useState } from "react";
 import { user } from "~/api-server/statistics";
+import { dotMoney } from "~/utils/dotMoney";
 
 const cx = classNames.bind(styles)
 
@@ -42,7 +43,7 @@ function User() {
         return data.reduce((first,item,index)=>{
             if(item.detail){
                 const detail = item.detail[0]
-                return [...first,[index+1,item._id,detail.userName,detail.name,item.cost]]
+                return [...first,[index+1,item._id,detail.userName,detail.name,dotMoney(item.cost)]]
             }
             return [...first,[index+1,item._id,item.userName,item.name]]
             

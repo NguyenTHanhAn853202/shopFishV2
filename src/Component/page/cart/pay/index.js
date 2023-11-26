@@ -6,6 +6,7 @@ import { faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '~/Input';
 import { useNavigate } from 'react-router-dom';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -58,7 +59,7 @@ function Pay({ totalCost }) {
                     </tr>
                     <tr>
                         <td className={cx('left')}>Tổng</td>
-                        <td className={cx('right')}>{`${totalCost} VNĐ`}</td>
+                        <td className={cx('right')}>{`${dotMoney(totalCost)} VNĐ`}</td>
                     </tr>
                     <tr>
                         <td className={cx('pay')} colSpan={2}>

@@ -11,6 +11,7 @@ import { remove } from '~/api-server/cartService';
 import { CART } from '~/GlobalContext/key';
 import Default from '~/announcement/accept';
 import { updateCart } from '~/api-server/cartService';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -109,7 +110,7 @@ function InfoProduct({ data }) {
                                         {item?.idProduct?.name}
                                     </Link>
                                 </td>
-                                <td className={cx('tac', 'fw6')}>{`${item?.price} VNĐ`}</td>
+                                <td className={cx('tac', 'fw6')}>{`${dotMoney(item?.price)} VNĐ`}</td>
                                 <td className={cx('size', 'tac')}>{item.size}</td>
                                 <td className={cx('size', 'tac')}>{item.color}</td>
                                 <td className={cx('tac')}>
@@ -120,7 +121,7 @@ function InfoProduct({ data }) {
                                         setNumber={setNumber}
                                     />
                                 </td>
-                                <td className={cx('tar', 'fw6')}>{`${item.number * item?.price} VNĐ`}</td>
+                                <td className={cx('tar', 'fw6')}>{`${dotMoney(item.number * item?.price)} VNĐ`}</td>
                             </tr>
                         );
                     })}

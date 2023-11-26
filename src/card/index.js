@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,7 @@ function Card({ src, alt, href,name,cost,...props }) {
                 </div>
                 <div className={cx('info')}>
                     <h4 className={cx('name')}>{name}</h4>
-                    <h3 className={cx('price')}>{`${cost} VNĐ`}</h3>
+                    <h3 className={cx('price')}>{`${dotMoney(cost)} VNĐ`}</h3>
                 </div>
             </div>
         </Link>

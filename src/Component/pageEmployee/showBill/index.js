@@ -5,6 +5,7 @@ import { faCircleChevronDown, faCircleChevronUp } from "@fortawesome/free-solid-
 import { useEffect,useState } from "react";
 import { showBill, showSpecifyBill } from "~/api-server/bill";
 import { Fragment } from "react";
+import { dotMoney } from "~/utils/dotMoney";
 
 
 const cx = classNames.bind(styles)
@@ -90,8 +91,8 @@ function ShowBill() {
                                             <td colSpan={1}>{more.itemId}</td>
                                             <td colSpan={5}>{more.name}</td>
                                             <td colSpan={1}>{more.number}</td>
-                                            <td colSpan={1}>{more.price}VND</td>
-                                            <td colSpan={1}>{more.price*more.number}VND</td>
+                                            <td colSpan={1}>{dotMoney(more.price)}VND</td>
+                                            <td colSpan={1}>{dotMoney(more.price*more.number)}VND</td>
                                         </tr>
                                         })}
                                   </tbody>

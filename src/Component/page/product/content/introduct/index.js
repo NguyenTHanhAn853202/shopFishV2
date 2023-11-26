@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Announcement from '~/announcement/announcement';
 import NotifyContainer, { notify } from '~/utils/notification';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -93,7 +94,7 @@ function Introduct() {
                     </Link>
                 </span>
                 <h1 className={cx('name-product')}>{product?.name}</h1>
-                <h1 className={cx('price-product')}>{`${product?.price} VNĐ`}</h1>
+                <h1 className={cx('price-product')}>{`${dotMoney(product?.price)} VNĐ`}</h1>
                 <div className={cx('contain-type-number')}>
                     <div className={cx('product-type')}>
                         <span>Kích thước:</span>

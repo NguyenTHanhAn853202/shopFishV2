@@ -3,6 +3,7 @@ import OverviewDetail from "../overviewDetail";
 import { order } from "~/api-server/statistics";
 import { useEffect } from "react";
 import { useMemo } from "react";
+import { dotMoney } from "~/utils/dotMoney";
 
 const options = [
     {
@@ -41,13 +42,14 @@ function Order() {
             }
         })()
     },[startDate,endDate,option])
+    console.log(data);
 
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
 
             return item?.nameProduct?
-            [...first,[index+1,item._id,item.name,item.nameProduct,item.number,item.price]]
-            :[...first,[index+1,item._id,item.userID.name,item.idProduct.name,item.number,item.price]]
+            [...first,[index+1,item._id,item.name,item.nameProduct,item.number,dotMoney(item.price)]]
+            :[...first,[index+1,item._id,item.userID.name,item.idProduct.name,item.number,dotMoney(item.price)]]
         },[])
     },[JSON.stringify(data)])
     console.log(newData);

@@ -6,6 +6,7 @@ import { overview } from "~/api-server/statistics";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCube, faCubes, faDollarSign, faUser, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { dotMoney } from "~/utils/dotMoney";
 const cx = classNames.bind(styles)
 
 function OverViewStatistics({children}) {
@@ -20,7 +21,7 @@ function OverViewStatistics({children}) {
     return <div className={cx('wrapper',{wrap:true})}>
             <div className={cx('container')}>
                 <div className={cx('header')}>
-                    <CartInfo className={cx('cart-info')}  link={'/thong-ke'} info={data?.totalSales +' đ'} title='Tổng doanh thu' Icon={<FontAwesomeIcon icon={faDollarSign} />} />
+                    <CartInfo className={cx('cart-info')}  link={'/thong-ke'} info={dotMoney(data?.totalSales)+' đ'} title='Tổng doanh thu' Icon={<FontAwesomeIcon icon={faDollarSign} />} />
                     <CartInfo className={cx('cart-info')} link={'/thong-ke-khach-hang'} blue info={data?.userNumber} title='Tổng khách hàng' Icon={<FontAwesomeIcon icon={faUser} />} />
                     <CartInfo className={cx('cart-info')} link={'/thong-ke-san-pham'} green info={data?.itemNumber} title='Sản phẩm bán ra' Icon={<FontAwesomeIcon icon={faCube} />} />
                     <CartInfo className={cx('cart-info')} link={'/thong-ke-don-hang'} gold info={data?.orderNumber} title='Số đơn hàng' Icon={<FontAwesomeIcon icon={faCubes} />} />

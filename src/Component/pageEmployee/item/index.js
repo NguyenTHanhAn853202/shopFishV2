@@ -4,6 +4,7 @@ import OverviewDetail from "../overviewDetail";
 import { useMemo, useState } from "react";
 import { useEffect } from "react";
 import { item } from "~/api-server/statistics";
+import { dotMoney } from "~/utils/dotMoney";
 
 
 const  cx = classNames.bind(styles)
@@ -41,7 +42,7 @@ function Item() {
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
             const detail = item._billId
-            return [...first,[index+1,item?._id,detail.provider,item.name,item.number,item.price]]
+            return [...first,[index+1,item?._id,detail.provider,item.name,item.number,dotMoney(item.price)]]
         },[])
     },[JSON.stringify(data)])
 

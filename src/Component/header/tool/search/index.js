@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loading from '~/utils/loading';
 import { faFaceSadTear } from '@fortawesome/free-regular-svg-icons';
 import { useLocation } from 'react-router-dom';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -70,7 +71,7 @@ function Search() {
                                 {product.image[0]?.includes('.mp4')? <video src={product.image[0]}></video> :<img className={cx('product-img')} src={product.image[0]} />}
                                 <div>
                                     <h4>{product.name}</h4>
-                                    <span>{`${product.price} VNĐ`}</span>
+                                    <span>{`${dotMoney(product.price)} VNĐ`}</span>
                                 </div>
                             </Link>
                         </li>

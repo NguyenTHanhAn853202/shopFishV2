@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getDetailBill } from "~/api-server/bought";
 import { useState } from "react";
 import { useMemo } from "react";
+import { dotMoney } from "../../../utils/dotMoney";
 
 const cx = classNames.bind(styles)
 
@@ -47,12 +48,17 @@ function DetailAtStore() {
                         textAlign: 'center',
                         fontWeight: '500',
                         paddingBottom: '20px'
+                    }}>SHOP CÁ CẢNH</h1>
+                    <h1 style={{
+                        textAlign: 'center',
+                        fontWeight: '500',
+                        paddingBottom: '20px'
                     }}>Hóa đơn</h1>
                     <h3 style={{
                         textAlign: 'center',
                         fontWeight: '500',
                         padding:'3px'
-                    }}>{states.name}</h3>
+                    }}>Họ tên: {states.name}</h3>
                     <h3 style={{
                         textAlign: 'center',
                         fontWeight: '500',
@@ -120,7 +126,7 @@ function DetailAtStore() {
                                     <td style={{
                                         textAlign: 'center',
                                         border: '1px solid #999',
-                                    }}>{item.number*item.price}</td>
+                                    }}>{dotMoney(item.number*item.price)}VNĐ</td>
                                 </tr>
                            ))}
                         </tbody>
@@ -133,15 +139,11 @@ function DetailAtStore() {
                             <tbody>
                                 <tr>
                                     <td>Tổng tiền: </td>
-                                    <td style={{textAlign: 'right'}}>{totalCost}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phí vận chuyển: </td>
-                                    <td style={{textAlign: 'right'}}>0</td>
+                                    <td style={{textAlign: 'right'}}>{dotMoney(totalCost)}VNĐ</td>
                                 </tr>
                                 <tr>
                                     <td>Thành tiền: </td>
-                                    <td style={{textAlign: 'right'}}>{totalCost}</td>
+                                    <td style={{textAlign: 'right'}}>{dotMoney(totalCost)}VNĐ</td>
                                 </tr>
                             </tbody>
                         </table>

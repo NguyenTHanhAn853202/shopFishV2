@@ -9,6 +9,7 @@ import { Context } from '~/GlobalContext';
 import { remove } from '~/api-server/cartService';
 import { CART, REMOVE_CART } from '~/GlobalContext/key';
 import NotifyContainer, { notify } from '~/utils/notification';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 function Bag({ setAgree, setIsShow, agree }, ref) {
@@ -77,7 +78,7 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
                                     </div>
                                     <div className={cx('info-sell')}>
                                         <span className={cx('amount')}>{`${item.number} × `}</span>
-                                        <span className={cx('price')}>{`${item.price} VNĐ`}</span>
+                                        <span className={cx('price')}>{`${dotMoney(item.price)} VNĐ`}</span>
                                         
                                     </div>
                                     <h4 className={cx('size')}>{`Size: ${item?.size}`}</h4>
@@ -87,7 +88,7 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
                     </ul>
                     <div className={cx('handle')}>
                         <h2 className={cx('sum-money')}>
-                            Tổng phụ: <span className={cx('money-paid')}>{`${total} VNĐ`}</span>
+                            Tổng phụ: <span className={cx('money-paid')}>{`${dotMoney(total)} VNĐ`}</span>
                         </h2>
                         <div className={cx('btn')}>
                             <Button ishover to={'/gio-hang'} classNames={cx('btn-goto-bag')}>

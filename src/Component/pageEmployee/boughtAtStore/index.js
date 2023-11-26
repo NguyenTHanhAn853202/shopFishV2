@@ -11,6 +11,7 @@ import useDebounce from "~/utils/useDebounce";
 import { useEffect } from "react";
 import { search } from "~/api-server/search";
 import Render from "~/renderTippy";
+import { dotMoney } from "~/utils/dotMoney";
 
 const cx = classNames.bind(styles)
 
@@ -137,7 +138,7 @@ function BoughtAtStore() {
                                         <div data-toggle={true} className={cx('info-product')}>
                                             <h3 data-toggle={true}>{item.name}</h3>
                                             <span data-toggle={true}>SL: {item.number} sản phẩm</span>
-                                            <h3 data-toggle={true}>Đơn giá: {item.price}VNĐ</h3>
+                                            <h3 data-toggle={true}>Đơn giá: {dotMoney(item.price)}VNĐ</h3>
                                         </div>
                                     </li>
                                 })}
@@ -174,7 +175,7 @@ function BoughtAtStore() {
                         </td>
                        
                         <td>
-                            <h4>{item?.price} VNĐ</h4>
+                            <h4>{dotMoney(item?.price)} VNĐ</h4>
                         </td>
                         <td>
                             <h4>{item.number}</h4>

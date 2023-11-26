@@ -6,6 +6,7 @@ import { myBought } from "~/api-server/bought";
 import axios from "axios";
 import { statusOrder } from "~/api-server/GHN";
 import statusDelivery from "./status";
+import { dotMoney } from "~/utils/dotMoney";
 const cx = classNames.bind(styles)
 
 function MyOrder() {
@@ -88,7 +89,7 @@ function MyOrder() {
                 <th colSpan={1} scope="row">{index+1}</th> 
                     <td colSpan={2}><img style={{width:'100px',objectFit:'cover'}} src={item.image} /></td>
                     <td colSpan={5}>{item.idProduct?.name}</td>
-                    <td colSpan={2}>{`${item.number} x ${item.price} = ${item.price*item.number} VNĐ`}</td>
+                    <td colSpan={2}>{`${item.number} x ${dotMoney(item.price)} = ${dotMoney(item.price*item.number)} VNĐ`}</td>
                     <td colSpan={1}>{status}</td>
                 </tr>
             })}

@@ -4,6 +4,7 @@ import Input from '~/Input';
 import { useEffect, useRef,useContext, useState } from 'react';
 import { Context } from '~/GlobalContext';
 import { showAddProduect } from '~/api-server/bill';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -52,13 +53,12 @@ function OverView({ setOverView,success=false,setSuccess,overView,disable=false,
     //         });
     //     }
     // },[JSON.stringify(category)])
-
     return (
         <div className={cx('wrapper')}>
             <select disabled={disable} ref={productRef} className={cx('select-product')}  onChange={handleProduct} >
                 {name? <option>{name}</option>: <option value='default'>Chọn sản phẩm</option>}
                 {data.map((item,index)=> <option key={index} value={JSON.stringify({...item,index:index})}>
-                    {`${item.billId} - ${item._billId.provider} - ${item.itemId} - ${item.name} - số lượng: ${item.recentNumber} - ${item.price}VND`}
+                    {`${item.billId} - ${item._billId.provider} - ${item.itemId} - ${item.name} - số lượng: ${item.recentNumber} - ${dotMoney(item.price)}VND`}
                 </option>)}
             </select>
 

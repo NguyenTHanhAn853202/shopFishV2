@@ -4,6 +4,7 @@ import Button from '~/button';
 import { createRef, useEffect, useRef, useState } from 'react';
 import { confirm } from '~/api-server/showOrder';
 import { createItem, getDistrict } from '~/api-server/GHN';
+import { dotMoney } from '~/utils/dotMoney';
 
 const cx = classNames.bind(styles);
 
@@ -66,6 +67,7 @@ function Card({ user, order, idOrder,item,setRender }) {
                             <h1>{`${item.toName} - ${item.toPhoneNumber}`}</h1>
                             <h2>{`Địa chỉ: ${item.address}`}</h2>
                             <h2>{`Địa chỉ cụ thể: ${item.toSpecificAddress}`}</h2>
+                            <h2>{`Ghi chú: ${item?.note}`}</h2>
                         </div>
                     </div>
                     <h1>Sản phẩm</h1>
@@ -81,7 +83,8 @@ function Card({ user, order, idOrder,item,setRender }) {
                     <img src={itemProduct.image} alt={'anh san pham'} />
                     <div className={cx('info-product')}>
                         <h1>{`${itemProduct?.idProduct?.name}`}</h1>
-                        <h2>{`Size: ${itemProduct?.size} - Số lượng: ${itemProduct?.number} - Giá: ${itemProduct?.price}VND`}</h2>
+                        <h2>{`Size: ${itemProduct?.size} - Số lượng: ${itemProduct?.number} - Giá: ${dotMoney(itemProduct?.price)}VND`}</h2>
+                        
                     </div>
                     <div className={cx('info-item')}>
                         <p>Thông tin đơn hàng</p>
