@@ -23,21 +23,25 @@ function User() {
     const [option,setOption] = useState(0)
     const [data,setData] = useState([])
     const [tableHeads,setTableHeads] = useState([])
+    const [search,setSearch] = useState('')
 
     useEffect(()=>{
         (async()=>{
-            const data = await user(startDate,endDate,option)
+            const data = await user(startDate,endDate,option,search)
             if(data.success){
                 setData(data.data)
             }
-            if(option*1===1){
+            if(search && option !=1) setTableHeads(['STT','ID','Tên đăng nhập','Tên khách hàng','Tổng tiền(VND)'])
+            else if(option*1===1){
                 setTableHeads(['STT','ID','Tên đăng nhập','Tên khách hàng','Tổng tiền(VND)'])
             }
             else{
                 setTableHeads(['STT','ID','Tên đăng nhập','Tên khách hàng'])
             }
         })()
-    },[startDate,endDate,option])
+    },[startDate,endDate,option,search])
+
+    console.log(data);
 
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
@@ -63,6 +67,8 @@ function User() {
             title={title}
             tableHeads={tableHeads}
             data={newData}
+            search={search}
+            setSearch={setSearch}
         >
             
         </OverviewDetail>

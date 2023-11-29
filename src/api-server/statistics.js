@@ -26,14 +26,14 @@ export const saleInYear = async()=>{
     }
 }
 
-export const item = async(startDate,endDate,option) => {
+export const item = async(startDate,endDate,option,search) => {
     try {
         const data = await request.get('bought/product',{
             params: {
                 id:localStorage.id,
                 startDate,
                 endDate,
-                option
+                option,search
             }
         })
         return data.data
@@ -42,12 +42,12 @@ export const item = async(startDate,endDate,option) => {
     }
 }
 
-export const order = async(startDate,endDate,option) => {
+export const order = async(startDate,endDate,option,search) => {
     try {
         const data = await request.get('bought/order',{
             params: {
                 id:localStorage.id,
-                startDate,endDate,option
+                startDate,endDate,option,search
             }
         })
         return data.data
@@ -55,12 +55,12 @@ export const order = async(startDate,endDate,option) => {
         console.log(error.message);
     }
 }
-export const user = async(startDate,endDate,option) => {
+export const user = async(startDate,endDate,option,search) => {
     try {
         const data = await request.get('bought/user',{
             params: {
                 id:localStorage.id,
-                startDate,endDate,option
+                startDate,endDate,option,search
             }
         })
         return data.data
@@ -69,12 +69,12 @@ export const user = async(startDate,endDate,option) => {
     }
 }
 
-export const provider = async(startDate,endDate,option) => {
+export const provider = async(startDate,endDate,option,search) => {
     try {
         const data = await request.get('bought/provider',{
             params: {
                 id:localStorage.id,
-                startDate,endDate,option
+                startDate,endDate,option,search
             }
         })
         return data.data

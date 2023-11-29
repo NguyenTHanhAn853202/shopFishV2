@@ -12,7 +12,8 @@ const cx = classNames.bind(styles)
 function OverviewDetail({options=[],option,setOption,
     startDate, setStartDate,endDate, setEndDate,
     data,title,
-    tableHeads=[]
+    tableHeads=[],
+    search,setSearch
     }) {
     
     const selectRef  = useRef()
@@ -31,7 +32,6 @@ function OverviewDetail({options=[],option,setOption,
         const nameFile = title+'.xlsx'
         XLSX.writeFile(wb,nameFile)
     }
-
     useEffect(()=>{
         if(option*1===0) selectRef.current.value = option
     },[option])
@@ -45,6 +45,10 @@ function OverviewDetail({options=[],option,setOption,
                             <option value={0}>Danh mục thống kê</option>
                             {options.map((item, i) => <option key={i} value={item.value}>{item.title}</option>)}
                         </select>
+                    </li>
+                    <li>
+                        <label>Tìm kiếm</label>
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} className={cx('search')} />
                     </li>
                     <li>
                         <label>Từ ngày</label>

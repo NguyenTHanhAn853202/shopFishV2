@@ -29,11 +29,12 @@ function Order() {
     const [endDate, setEndDate] = useState(null);
     const [option,setOption] = useState(0)
     const [data,setData] = useState([])
+    const [search,setSearch] = useState('')
 
     useEffect(()=>{
         (async()=>{
             try {
-                const data = await order(startDate,endDate,option)
+                const data = await order(startDate,endDate,option,search)
                 if(data?.success) {
                     setData(data.data)
                 }
@@ -41,8 +42,7 @@ function Order() {
                 console.log(error.message);
             }
         })()
-    },[startDate,endDate,option])
-    console.log(data);
+    },[startDate,endDate,option,search])
 
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
@@ -65,6 +65,8 @@ function Order() {
             title={title}
             tableHeads={tableHeads}
             data={newData}
+            search={search}
+            setSearch={setSearch}
         >
 
         </OverviewDetail>

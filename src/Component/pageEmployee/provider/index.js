@@ -20,10 +20,11 @@ function Provider() {
     const [endDate, setEndDate] = useState(null);
     const [option,setOption] = useState(0)
     const [data,setData] = useState([])
+    const [search,setSearch] = useState('')
 
     useEffect(()=>{
         (async()=>{
-            const data = await provider(startDate,endDate,option)
+            const data = await provider(startDate,endDate,option,search)
             if(data.success) {
                 setData(data.data)
             }
@@ -34,7 +35,7 @@ function Provider() {
                 tableHeads = ['STT','ID','Tên nhà cung cấp']
             }
         })()
-    },[startDate,endDate,option])
+    },[startDate,endDate,option,search])
 
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
@@ -57,6 +58,8 @@ function Provider() {
             data={newData}
             title={title}
             tableHeads={tableHeads}
+            search={search}
+            setSearch={setSearch}
         >
 
         </OverviewDetail>

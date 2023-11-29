@@ -30,14 +30,15 @@ function Item() {
     const [endDate, setEndDate] = useState(null);
     const [option,setOption] = useState(0)
     const [data,setData] = useState([])
+    const [search,setSearch] = useState('')
     useEffect(()=>{
         (async()=>{
-            const data = await item(startDate,endDate,option)
+            const data = await item(startDate,endDate,option,search)
             if(data.success) {
                 setData(data.data)
             }
         })()
-    },[startDate,endDate,option])
+    },[startDate,endDate,option,search])
 
     const newData = useMemo(()=>{
         return data.reduce((first,item,index)=>{
@@ -60,6 +61,8 @@ function Item() {
             data={newData}
             title={title}
             tableHeads={tableHeads}
+            search={search}
+            setSearch={setSearch}
         >
             
         </OverviewDetail>
